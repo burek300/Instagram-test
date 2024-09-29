@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.username}}</title>
+    <link rel="icon" href="{{ MEDIA_URL }}Instagram_icon.png">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b77f7c7cf1.js" crossorigin="anonymous"></script>
+    <style>
+        #main_div_2 {
+            width: 84%;
+            height: 100vh;
+            overflow-y: scroll;
+            position: relative;
+        }
+        #outside_profile_div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        #profile_posts {
+            width: 900px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        #profile {
+            background-color: rgb(0, 0, 0);
+            width: 100%;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+        }
+        .profile_photo {
+            width: 50%;
+            height: 450px;
+            background-color: rgb(0, 0, 0);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle_border {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        .circular_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10000px;
+            border: none;
+        }
+        #profile_data {
+            width: 50%;
+            height: 450px;
+            background-color: rgb(0, 0, 0);
+        }
+        #first_row {
+            background-color: rgba(0,0,0,0);
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 100px;
+        }
+        #first_row > a {
+            text-decoration: none;
+        }
+        #username {
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            font-size: 20px;
+        }
+        #edit_profile_div {
+            margin-left: 20px;
+            border-radius: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: white;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        #edit_profile {
+            font-size: 20px;
+            background-color: rgba(0,0,0,0);
+            color: black;
+            font-weight: 400;
+        }
+        #second_row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+        }
+        span {
+            font-weight: 600;
+        }
+        #third_row {
+            font-size: 20px;
+        }
+        #posts {
+            background-color: rgb(0, 100, 100);
+            width: 100%;
+            height: 2000px;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: green;
+            color: white;
+            width: 100px;
+            margin-left: 20px;
+        }
+        .follow {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            border: 2px solid white;
+            font-weight: 600;
+            font-size: 20px;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        .unfollow {
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            font-weight: 400;
+            font-size: 20px;
+        }
+        #message_div {
+            width: 110px;
+            font-size: 20px;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            margin-left: 20px;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        #message_p {
+            font-size: 20px;
+            font-weight: 600;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main_div_1">
+        <div id="logo">
+            <h3 id="logo-text"><a href="http://127.0.0.1:8000/">
+                <img src="{{ MEDIA_URL }}Logo-Instagram.png" height="30px">
+            </a></h3>
+        </div>
+        <div id="signs">
+            <a href="http://127.0.0.1:8000/" class="sign" id="home_sign">
+                <i class="fa-solid fa-house fa-lg"></i> Home
+            </a>
+            <a href="http://127.0.0.1:8000/search/" class="sign" id="search_sign">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i> Search
+            </a>
+            <a href="http://127.0.0.1:8000/direct/" class="sign" id="chat_sign">
+                <i class="fa-solid fa-paper-plane fa-lg"></i> Messages
+            </a>
+            <a href="#" class="sign" id="notifications_sign">
+                <i class="fa-solid fa-heart fa-lg"></i> Notifications
+            </a>
+            <a href="http://127.0.0.1:8000/post/" class="sign" id="create_sign">
+                <i class="fa-regular fa-square-plus fa-lg"></i> Create
+            </a>
+            <a href="http://127.0.0.1:8000/profile/" class="sign" id="profile_sign">
+                <i class="fa-solid fa-user fa-lg"></i> Profile
+            </a>
+        </div>
+        <div id="logout_div">
+            <a href="http://127.0.0.1:8000/logout" class="sign" id="logout">Log Out</a>
+        </div>
+    </div>
+    <div id="main_div_2">
+        <div class="vertical-line"></div>
+        <div id="outside_profile_div">
+            <div id="profile_posts">
+                <div id="profile">
+                    <div class="profile_photo">
+                        <div class="circle_border">
+                            {% if user.profile_image %}
+                            <img src="{{user.profile_image.url}}" class="circular_image">
+                            {% else %}
+                            <img src="">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="profile_data">
+                        <div id="first_row">
+                            <p id="username">@<span>{{user.username}}</span></p>
+                            {% if request.user != user %}
+                            <div id="follow_div">
+                                <button id="follow_button" data-username="{{user.username}}">
+                                    {% if is_following %}
+                                    <p class="unfollow">Unfollow</p>
+                                    {% else %}
+                                    <p class="follow">Follow</p>
+                                    {% endif %}
+                                </button>
+                            </div>
+                            {% endif %}
+                            <a id="message_a" href="http://127.0.0.1:8000/direct/{{user.username}}">
+                                <div id="message_div">
+                                    <p id="message_p">Message</p>
+                                </div>
+                            </a>
+                        </div>
+                        <br>
+                        <div id="second_row">
+                            <p><span>{{user.numof_posts}}</span> posts</p>
+                            <p><span>{{user.numof_followers}}</span> followers</p>
+                            <p><span>{{user.numof_following}}</span> following</p>
+                        </div>
+                        <br>
+                        <div id="third_row">
+                            <p>Bio:</p>
+                            {% if user.description == None %}
+                            <span></span>
+                            {% else %}
+                            <span>{{user.description|linebreaksbr}}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="horizontal-line"></div>
+                <div id="posts">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'scripts.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const followButton = document.getElementById('follow_button');
+            if (followButton) {
+                followButton.addEventListener('click', function() {
+                    const username = this.getAttribute('data-username');
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', `/profile/${username}/follow/`);
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+    
+                            // Clear the existing content of the button
+                            followButton.innerHTML = '';
+    
+                            // Create a new p element
+                            const p = document.createElement('p');
+    
+                            // Set the text and class based on the follow state
+                            if (response.followed) {
+                                p.textContent = 'Unfollow';
+                                p.className = 'unfollow';
+                            } else {
+                                p.textContent = 'Follow';
+                                p.className = 'follow';
+                            }
+    
+                            // Append the p element to the followButton
+                            followButton.appendChild(p);
+    
+                            // Update the followers count
+                            document.getElementById('followers_count').textContent = response.followers_count;
+                        }
+                    };
+                    xhr.send();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b77f7c7cf1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        #main_div_2 {
+            width: 83%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(red, green, blue, 0);
+        }
+        #select_div {
+            width: 400px;
+            height: 100px;
+            background-color: rgb(0, 150, 150);
+            border-radius: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+        #select_div:hover {
+            width: 500px;
+            height: 70px;
+            transition: 0.3s;
+        }
+        #select_p {
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 30px;
+            font-weight: 200;
+            color: white;
+            text-decoration: none;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <div id="main_div_1">
+    <div id="logo">
+        <h3 id="logo-text"><a href="http://127.0.0.1:8000/">
+            <img src="{{ MEDIA_URL }}Logo-Instagram.png" height="30px">
+        </a></h3>
+    </div>
+    <div id="signs">
+        <a href="http://127.0.0.1:8000/" class="sign" id="home_sign">
+            <i class="fa-solid fa-house fa-lg"></i> Home
+        </a>
+        <a href="http://127.0.0.1:8000/search/" class="sign" id="search_sign">
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i> Search
+        </a>
+        <a href="http://127.0.0.1:8000/direct/" class="sign" id="chat_sign">
+            <i class="fa-solid fa-paper-plane fa-lg"></i> Messages
+        </a>
+        <a href="#" class="sign" id="notifications_sign">
+            <i class="fa-solid fa-heart fa-lg"></i> Notifications
+        </a>
+        <a href="http://127.0.0.1:8000/post/" class="sign" id="create_sign">
+            <i class="fa-regular fa-square-plus fa-lg"></i> Create
+        </a>
+        <a href="http://127.0.0.1:8000/myprofile/" class="sign" id="profile_sign">
+            <i class="fa-solid fa-user fa-lg"></i> Profile
+        </a>
+    </div>
+    <div id="logout_div">
+        <a href="#" class="sign" id="logout">Log Out</a>
+    </div>
+    </div>
+    <div id="main_div_2">
+        <div class="vertical-line"></div>
+        <div id="main_div_2">
+            <a href="http://127.0.0.1:8000/">
+                <div id="select_div">
+                    <p id="select_p">Select from computer</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>

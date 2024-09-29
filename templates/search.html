@@ -1,0 +1,161 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{{ MEDIA_URL }}Instagram_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b77f7c7cf1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        #main_div_2 {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #search_div {
+            width: 500px;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        input {
+            width: 100%;
+            height: 70px;
+            background-color: rgb(0, 0, 0);
+            margin-top: 20%;
+            padding-left: 20px;
+            border-radius: 20px;
+            border: 3px solid white;
+            color: white;
+            font-size: 20px;
+            outline: none;
+            font-weight: 500;
+        }
+        #results {
+            width: 100%;
+            height: 60%;
+            margin-top: 10%;
+            padding-top: 20px;
+            background-color: rgb(0, 0, 0);
+            border-radius: 20px;
+        }
+        .result {
+            height: 60px;
+            width: 100%;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .result:hover {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .result > img {
+            border-radius: 1000px;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-left: 20px;
+            margin-right: 10px;
+            border: 2px solid black;
+        }
+        .result > span {
+            background-color:rgba(0, 0, 0, 0);
+            font-weight: 500;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        #no_user_found {
+            margin-left: 20px;
+            font-size: 20px;
+            color: white;
+            font-weight: 400;
+        }
+    </style>
+    <div id="main_div_1">
+        <div id="logo">
+            <h3 id="logo-text"><a href="http://127.0.0.1:8000/">
+                <img src="{{ MEDIA_URL }}Logo-Instagram.png" height="30px">
+            </a></h3>
+        </div>
+        <div id="signs">
+            <a href="http://127.0.0.1:8000/" class="sign" id="home_sign">
+                <i class="fa-solid fa-house fa-lg"></i> Home
+            </a>
+            <a href="http://127.0.0.1:8000/search/" class="sign" id="search_sign">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i> Search
+            </a>
+            <a href="http://127.0.0.1:8000/direct/" class="sign" id="chat_sign">
+                <i class="fa-solid fa-paper-plane fa-lg"></i> Messages
+            </a>
+            <a href="#" class="sign" id="notifications_sign">
+                <i class="fa-solid fa-heart fa-lg"></i> Notifications
+            </a>
+            <a href="http://127.0.0.1:8000/post/" class="sign" id="create_sign">
+                <i class="fa-regular fa-square-plus fa-lg"></i> Create
+            </a>
+            <a href="http://127.0.0.1:8000/myprofile/" class="sign" id="profile_sign">
+                <i class="fa-solid fa-user fa-lg"></i> Profile
+            </a>
+        </div>
+        <div id="logout_div">
+            <a href="http://127.0.0.1:8000/logout" class="sign" id="logout">Log Out</a>
+        </div>
+    </div>
+    <div id="main_div_2">
+        <div class="vertical-line"></div>
+        <div id="search_div">
+            <input type="text" id="search_bar" placeholder="Search users">
+            <div id="results"></div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#search_bar').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: '{% url "search_users" %}',
+                    data: {'query': query},
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#results').empty();
+                        if (data.length > 0) {
+                            $.each(data, function(index, user) {
+                                var userHtml = '<a href="/profile/'+ user.username+'"><div class="result">' +
+                                    (user.profile_image ? '<img src="' + user.profile_image + '" alt="' + user.username + '">' : '') +
+                                    '<span>' + user.username + '</span>' +
+                                    '</div></a>';
+                                $('#results').append(userHtml);
+                            });
+                        } else {
+                            $('#results').append('<div id="no_user_found">No users found . . .</div>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

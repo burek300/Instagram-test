@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #support_div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #register_div {
+            width: 500px;
+            height: 625px;
+            border-radius: 20px;
+            border: 1px solid white;
+        }
+        #logo {
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 20%;
+            border-radius: 30px;
+        }
+        #form_div {
+            height: 60%;
+            width: 100%;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            border-radius: 20px;
+        }
+        form {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+        }
+        input {
+            width: 200px;
+            height: 50px;
+            border: 2px solid white;
+            margin-left: 10%;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        input::placeholder {
+            color: rgb(182, 182, 182);
+            font-size: 20px;
+        }
+        #color_input
+        #submit {
+            font-size: 25px;
+            font-weight: 400;
+            background-color: white;
+            color: black;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        #submit:hover {
+            cursor: pointer;
+        }
+        #messages {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;  
+        }
+        h5 {
+            color: white;
+            width: 50%;
+            margin-left: 25%;
+        }
+        #logininstead {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        #logindiv {
+            width: 100%;
+            height: 50px;
+            border: 2px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        #logindiv > p {
+            font-size: 25px;
+            font-weight: 400;
+            text-decoration: none;
+        }
+        #outdiv {
+            width: 80%;
+        }
+        #outdiv > a {
+            text-decoration: none;
+            width: 100%;
+        }
+        p {
+            width: auto;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="support_div">
+        <div id="register_div">
+            <div id="logo">
+                <img src="{{ MEDIA_URL }}Logo-Instagram.png" height="50px" id="image_id">
+            </div>
+            <div id="form_div">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="email" placeholder="Email" name="email" required autocomplete="off">
+                    <input type="password" placeholder="Password" name="password" required autocomplete="off">
+                    <input type="text" placeholder="Full Name" name="full_name" autocomplete="off">
+                    <input type="text" placeholder="Username" name="username" required autocomplete="off">
+                    <input type="submit" id="submit" value="REGISTER" required autocomplete="off">
+                </form>
+            </div>
+            <div id="logininstead">
+                <div id="outdiv">
+                    <p>Already have an account?</p>
+                    <a href="http://127.0.0.1:8000/login/">
+                        <div id="logindiv">
+                            <p>LOGIN</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="messages">
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

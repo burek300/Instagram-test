@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{{ MEDIA_URL }}Instagram_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b77f7c7cf1.js" crossorigin="anonymous"></script>
+    <style>
+        #edit_div_out {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 83%;
+            background-color: rgb(0, 0, 0);
+            height: 100vh;
+        }
+        #edit_profile_div {
+            width: 500px;
+            height: 60%;
+            background-color: rgb(0, 0, 0);
+            border: 2px solid white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+        }
+        .input_name {
+            display: flex;
+            justify-content: center;
+        }
+        .input_name > p {
+            font-size: 25px;
+            font-weight: 300;
+        }
+        input {
+            width: 80%;
+            height: 50px;
+            border: 2px solid white;
+            margin-left: 10%;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            font-weight: 300;
+            padding-left: 20px;
+            margin-bottom: 40px;
+            outline: none;
+        }
+        textarea {
+            width: 80%;
+            max-width: 80%;
+            min-width: 80%;
+            min-height: 100px;
+            border: 2px solid white;
+            margin-left: 10%;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            padding-left: 20px;
+            margin-bottom: 40px;
+            outline: none;
+        }
+        #submit {
+            margin: 0;
+            margin-left: 30%;
+            padding: 0;
+            width: 40%;
+            background-color: white;
+            color: black;
+            font-size: 25px;
+            font-weight: 400;
+            -webkit-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+            box-shadow: 0px 0px 35px -12px rgba(255,255,255,1);
+        }
+        #privacy_div {
+            background-color: rgb(0, 0, 0);
+            padding: 0;
+            margin: 0;
+            margin-left: 25%;
+            margin-bottom: 50px;
+            width: 50%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            border-radius: 20px;
+            border: 2px solid white;
+        }
+        #radio_div_out {
+            height: 100%;
+            width: 100px;
+        }
+        .radio_div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+        }
+        .radio_div > input {
+            margin: 0;
+            padding: 0;
+            height: 25px;
+            width: 25px;
+        }
+        .radio_div > p {
+            font-size: 20px;
+        }
+        #image {
+            padding-top: 7px;
+        }
+        .vertical-line {
+        border-right: 1px solid rgba(255, 255, 255, 0.2); /* Adjust thickness and color as needed */
+        height: 100%; /* Ensures the line spans the full height of the div */
+    }
+    </style>
+</head>
+<body>
+    <div id="main_div_1">
+        <div id="logo">
+            <h3 id="logo-text"><a href="http://127.0.0.1:8000/">
+                <img src="{{ MEDIA_URL }}Logo-Instagram.png" height="30px">
+            </a></h3>
+        </div>
+        <div id="signs">
+            <a href="http://127.0.0.1:8000/" class="sign" id="home_sign">
+                <i class="fa-solid fa-house fa-lg"></i> Home
+            </a>
+            <a href="http://127.0.0.1:8000/search/" class="sign" id="search_sign">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i> Search
+            </a>
+            <a href="http://127.0.0.1:8000/direct/" class="sign" id="chat_sign">
+                <i class="fa-solid fa-paper-plane fa-lg"></i> Messages
+            </a>
+            <a href="#" class="sign" id="notifications_sign">
+                <i class="fa-solid fa-heart fa-lg"></i> Notifications
+            </a>
+            <a href="http://127.0.0.1:8000/post/" class="sign" id="create_sign">
+                <i class="fa-regular fa-square-plus fa-lg"></i> Create
+            </a>
+            <a href="http://127.0.0.1:8000/profile/" class="sign" id="profile_sign">
+                <i class="fa-solid fa-user fa-lg"></i> Profile
+            </a>
+        </div>
+        <div id="logout_div">
+            <a href="http://127.0.0.1:8000/logout" class="sign" id="logout">Log Out</a>
+        </div>
+    </div>
+    <div id="edit_div_out">
+        <div class="vertical-line"></div>
+        <div id="edit_profile_div">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input_name"><p>Profile Picture</p></div>
+                {% if user.profile_image %}
+                <input type="file" name="image" value="{{user.profile_image.url}}" accept="image/*" id="image">
+                {% else %}
+                <input type="file" name="image" accept="image/*" id="image">
+                {% endif %}
+                <input hidden type="image" name="current_image" value="{{user.profile_image}}">
+                <input type="text" value="{{user.username}}" name="username" hidden>
+                <div class="input_name"><p>Bio</p></div>
+                {% if user.description == None %}
+                <textarea rows="5" name="description"></textarea>
+                {% else %}
+                <textarea name="description">{{user.description}}</textarea>
+                {% endif %}
+                <input type="submit" value="SAVE" id="submit">
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>
